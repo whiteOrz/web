@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>defered</title>
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+</head>
+
+<body>
+    <script>
+    // var p = new Promise(function(resolve, reject) {
+    //     setTimeout(resolve, 2000)
+    // });
+
+
+    // var a = p.then(function() {
+    //     alert(1);
+    //     var p2 = new Promise(function(resolve, reject) {
+    //         setTimeout(resolve, 2000)
+    //     });
+
+    //     return "123";
+    // });
+
+    // a.then(function(value) {
+    //     alert(value);
+    // });
+
+    // console.log(a);
+
+    function wait() {
+        var def = $.Deferred();
+        setTimeout(function() {
+            def.resolve();
+        }, 2000);
+
+        return def.promise();
+    }
+
+    wait().then(function() {
+        alert(1);
+        var def2 = $.Deferred();
+
+        setTimeout(function() {
+            def2.resolve();
+        }, 2000);
+
+        return def2.promise();
+    }).then(function() {
+        alert(2);
+
+    });
+    </script>
+</body>
+
+</html>
